@@ -6,10 +6,6 @@ function createGrid() {
     var board = document.getElementById("board");
 
     for (squares=0; squares < 100; squares++) {
-        //create grid label node
-        var gridLabel = document.createElement("span");
-        gridLabel.className += "gridLabel";
-        gridLabel.textContent = "A1";
         
         //create square node
         var square = document.createElement("div");
