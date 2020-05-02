@@ -41,3 +41,32 @@ main {
 .square:hover {
     background-color: grey;
 }
+
+.ship {
+    border: 1px solid purple;
+    margin: 10px 0;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 10px;
+}
+
+#carrier {
+    width: 244px;
+}
+
+#battleship {
+    width: 194px;
+}
+
+#cruiser {
+    width: 144px;
+}
+
+#submarine {
+    width: 144px;
+}
+
+#destroyer {
+    width: 94px;
+}
