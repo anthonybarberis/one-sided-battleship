@@ -4,20 +4,33 @@
     padding: 0;
 }
 
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#tray {
+    border: 2px solid green;
+    max-width: 500px;
+    padding: 20px;
+    flex: 1 1 auto;
+}
+
 #board {
     border: 2px solid blue;
-    margin: 0 0 0 auto;
     width: 500px;
     height: 500px;
-    max-height: 100vh;
+    max-height: 100vw;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+    flex: 0 1 auto;
 }
 
 .square {
     border: 1px solid red;
-    flex-basis: 10%;
+    flex: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
