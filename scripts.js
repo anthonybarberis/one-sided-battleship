@@ -1,13 +1,12 @@
 function init() {
     createGrid();
     createShips();
-    resizeShips();
+    resizeShips('horizontal');
 
     window.onresize = resizeShips;
 }
 
-let ships = [
-    {
+let ships = [{
         name: "Carrier",
         size: 5
     },
@@ -29,7 +28,9 @@ let ships = [
     }
 ]
 
-let gridSize = {}
+let gridSize = {};
+
+let rotation = 'vertical';
 
 function createGrid() {
     let board = document.getElementById("board");
@@ -66,7 +67,7 @@ function createShips() {
     }
 }
 
-function resizeShips() {
+function resizeShips(dimension) {
 
     //measure the grid size
     let oneGrid = document.getElementsByClassName("square")[0];
@@ -76,8 +77,16 @@ function resizeShips() {
     //apply the grid size to the ships
     let extantShips = document.getElementsByClassName("ship");
     for (i = 0; i < extantShips.length; i++) {
-        extantShips[i].style.width = `${ships[i].size * gridSize.offset}px`;
-        extantShips[i].style.height = `${gridSize.offset}px`;
+        switch (rotation) {
+            case 'horizontal':
+                extantShips[i].style.width = `${ships[i].size * gridSize.offset}px`;
+                extantShips[i].style.height = `${gridSize.offset}px`;
+                break;
+            case 'vertical':
+                extantShips[i].style.width = `${gridSize.offset}px`;
+                extantShips[i].style.height = `${ships[i].size * gridSize.offset}px`;
+                break;
+        }
     }
 }
 
