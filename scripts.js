@@ -1,7 +1,9 @@
 function init() {
     createGrid();
+    addDrags();
 }
 
+var ships 
 function createGrid() {
     let board = document.getElementById("board");
 
@@ -19,6 +21,14 @@ function createGrid() {
             //create squares
             board.appendChild(square);
         }
+    }
+}
+
+function addDrags() {
+    ships = document.getElementsByClassName("ship");
+    for (i = 0; i < ships.length; i++) {
+        console.log(ships[i]);
+        ships[i].setAttribute("draggable", "true");
     }
 }
 
