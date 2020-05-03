@@ -5,19 +5,27 @@ function init() {
 
 var ships = {
     carrier: {
+        name: "Carrier",
         size: 5
     },
     battleship: {
+        name: "Battleship",
         size: 4
     },
     cruiser: {
+        name: "Cruiser",
         size: 3
     },
     submarine: {
+        name: "Submarine",
         size: 3
     },
     detroyer: {
+        name: "Destroyer",
         size: 2
+    },
+    shared: {
+        gridSize: 0
     }
 }
 
