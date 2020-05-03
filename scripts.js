@@ -1,6 +1,5 @@
 function init() {
     createGrid();
-    measureGridSize();
     createShips();
     resizeShips();
 }
@@ -28,6 +27,8 @@ let ships = [
     }
 ]
 
+let gridSize = {}
+
 function createGrid() {
     let board = document.getElementById("board");
 
@@ -48,13 +49,6 @@ function createGrid() {
     }
 }
 
-let gridSize = {}
-function measureGridSize() {
-    let oneGrid = document.getElementsByClassName("square")[0];
-    gridSize.offset = oneGrid.offsetHeight;
-    gridSize.client = oneGrid.clientHeight;
-}
-
 function createShips() {
     let tray = document.getElementById("tray");
     for (i = 0; i < ships.length; i++) {
@@ -71,6 +65,13 @@ function createShips() {
 }
 
 function resizeShips() {
+
+    //measure the grid size
+    let oneGrid = document.getElementsByClassName("square")[0];
+    gridSize.offset = oneGrid.offsetHeight;
+    gridSize.client = oneGrid.clientHeight;
+
+    //apply the grid size to the ships
     let extantShips = document.getElementsByClassName("ship");
     for (i = 0; i < extantShips.length; i++) {
         extantShips[i].style.width = `${ships[i].size * gridSize.offset}px`;
