@@ -15,8 +15,8 @@ main {
 #tray {
     border: 2px solid green;
     max-width: 500px;
-    min-width: 300px;
-    flex: 1 1 auto;
+    min-width: 275px;
+    flex: 1;
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
