@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    user-select: none;
 }
 
 main {
@@ -59,26 +60,26 @@ main {
 }
 
 #carrier {
-    max-width: 244px;
-    width: 48vw;
+    max-width: 240px;
+    width: 47vw;
 }
 
 #battleship {
-    max-width: 194px;
-    width: 38vw;
+    max-width: 190px;
+    width: 37vw;
 }
 
 #cruiser {
-    max-width: 144px;
-    width: 28vw;
+    max-width: 140px;
+    width: 27vw;
 }
 
 #submarine {
-    max-width: 144px;
-    width: 28vw;
+    max-width: 140px;
+    width: 27vw;
 }
 
 #destroyer {
-    max-width: 94px;
+    max-width: 90px;
     width: 18vw;
 }
