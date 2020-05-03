@@ -1,5 +1,6 @@
 function init() {
     createGrid();
+    measureGridSize();
     createShips();
 }
 
@@ -40,10 +41,18 @@ function createGrid() {
             square.className += "square";
             square.textContent = square.id = row + (rows + 1);
 
-            //create
+            //create square
             board.appendChild(square);
         }
     }
+}
+
+let gridSize = {}
+function measureGridSize() {
+    let oneGrid = document.getElementsByClassName("square")[0];
+    gridSize.offset = oneGrid.offsetHeight;
+    gridSize.client = oneGrid.clientHeight;
+    console.log(gridSize);
 }
 
 function createShips() {
