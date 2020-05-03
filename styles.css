@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 main {
@@ -14,8 +15,9 @@ main {
     border: 2px solid green;
     max-width: 500px;
     min-width: 300px;
-    padding: 20px;
     flex: 1 1 auto;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 #board {
@@ -44,29 +46,39 @@ main {
 
 .ship {
     border: 1px solid purple;
-    margin: 10px 0;
-    height: 44px;
     display: flex;
     align-items: center;
-    padding: 0 0 0 10px;
+    justify-content: center;
+    height: 8vw;
+    max-height: 40px;
+    margin: 10px;
+}
+
+.ship:hover {
+    background-color: grey;
 }
 
 #carrier {
-    width: 244px;
+    max-width: 244px;
+    width: 48vw;
 }
 
 #battleship {
-    width: 194px;
+    max-width: 194px;
+    width: 38vw;
 }
 
 #cruiser {
-    width: 144px;
+    max-width: 144px;
+    width: 28vw;
 }
 
 #submarine {
-    width: 144px;
+    max-width: 144px;
+    width: 28vw;
 }
 
 #destroyer {
-    width: 94px;
+    max-width: 94px;
+    width: 18vw;
 }
