@@ -1,9 +1,7 @@
 function init() {
     createGrid();
     createShips();
-    resizeShips('horizontal');
-
-    window.onresize = resizeShips;
+    resizeShips();
 }
 
 let ships = [{
@@ -67,7 +65,7 @@ function createShips() {
     }
 }
 
-function resizeShips(dimension) {
+function resizeShips() {
 
     //measure the grid size
     let oneGrid = document.getElementsByClassName("square")[0];
@@ -92,6 +90,8 @@ function resizeShips(dimension) {
 
 
 window.onload = init;
+
+window.onresize = resizeShips;
 
 //listen for "r" to rotate ships
 document.addEventListener('keydown', function(event) {
