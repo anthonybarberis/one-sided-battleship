@@ -74,6 +74,7 @@ function resizeShips() {
     let extantShips = document.getElementsByClassName("ship");
     for (i = 0; i < extantShips.length; i++) {
         extantShips[i].style.width = `${ships[i].size * gridSize.offset}px`;
+        extantShips[i].style.height = `${gridSize.offset}px`;
     }
 }
 
