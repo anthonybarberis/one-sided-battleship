@@ -8,7 +8,7 @@
     font-size: 14px;
 }
 
-main {
+#table {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
