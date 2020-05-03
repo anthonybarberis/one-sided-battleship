@@ -54,20 +54,11 @@ function createShips() {
         let ship = document.createElement("div");
         ship.className += "ship";
         ship.textContent = ship.id = ships[i].name;
+        ship.setAttribute("draggable", "true");
 
         //create ship
         tray.appendChild(ship);
     }
 }
-
-/*
-function addDrags() {
-    let ships = document.getElementsByClassName("ship");
-    for (i = 0; i < ships.length; i++) {
-        console.log(ships[i]);
-        ships[i].setAttribute("draggable", "true");
-    }
-}
-*/
 
 window.onload = init;
