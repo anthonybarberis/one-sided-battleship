@@ -1,5 +1,6 @@
 function init() {
     createGrid();
+    createShips();
 }
 
 let ships = [
@@ -39,14 +40,24 @@ function createGrid() {
             square.className += "square";
             square.textContent = square.id = row + (rows + 1);
 
-            //create squares
+            //create
             board.appendChild(square);
         }
     }
 }
 
 function createShips() {
+    let tray = document.getElementById("tray");
+    for (i = 0; i < ships.length; i++) {
 
+        //create ship node
+        let ship = document.createElement("div");
+        ship.className += "ship";
+        ship.textContent = ship.id = ships[i].name;
+
+        //create ship
+        tray.appendChild(ship);
+    }
 }
 
 /*
