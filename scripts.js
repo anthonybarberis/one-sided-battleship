@@ -2,6 +2,7 @@ function init() {
     createGrid();
     measureGridSize();
     createShips();
+    resizeShips();
 }
 
 let ships = [
@@ -52,7 +53,6 @@ function measureGridSize() {
     let oneGrid = document.getElementsByClassName("square")[0];
     gridSize.offset = oneGrid.offsetHeight;
     gridSize.client = oneGrid.clientHeight;
-    console.log(gridSize);
 }
 
 function createShips() {
@@ -67,6 +67,13 @@ function createShips() {
 
         //create ship
         tray.appendChild(ship);
+    }
+}
+
+function resizeShips() {
+    let extantShips = document.getElementsByClassName("ship");
+    for (i = 0; i < extantShips.length; i++) {
+        extantShips[i].style.width = `${ships[i].size * gridSize.offset}px`;
     }
 }
 
