@@ -50,36 +50,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 8vw;
-    max-height: 40px;
     margin: 10px;
 }
 
 .ship:hover {
     background-color: grey;
-}
-
-#carrier {
-    max-width: 240px;
-    width: 47vw;
-}
-
-#battleship {
-    max-width: 190px;
-    width: 37vw;
-}
-
-#cruiser {
-    max-width: 140px;
-    width: 27vw;
-}
-
-#submarine {
-    max-width: 140px;
-    width: 27vw;
-}
-
-#destroyer {
-    max-width: 90px;
-    width: 18vw;
 }
