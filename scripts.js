@@ -30,7 +30,7 @@ let ships = [{
 
 let gridSize = {};
 
-let rotation = 'vertical';
+let rotation = 'horizontal';
 
 function createGrid() {
     let board = document.getElementById("board");
@@ -90,4 +90,17 @@ function resizeShips(dimension) {
     }
 }
 
+
 window.onload = init;
+
+//listen for "r" to rotate ships
+document.addEventListener('keydown', function(event) {
+    if (event.code == 'KeyR') {
+        if (rotation == 'horizontal') {
+            rotation = 'vertical';
+        } else {
+            rotation = 'horizontal';
+        }
+        resizeShips();
+    }
+})
