@@ -3,7 +3,24 @@ function init() {
     addDrags();
 }
 
-var ships 
+var ships = {
+    carrier: {
+        size: 5
+    },
+    battleship: {
+        size: 4
+    },
+    cruiser: {
+        size: 3
+    },
+    submarine: {
+        size: 3
+    },
+    detroyer: {
+        size: 2
+    }
+}
+
 function createGrid() {
     let board = document.getElementById("board");
 
@@ -16,7 +33,7 @@ function createGrid() {
             //create square node
             let square = document.createElement("div");
             square.className += "square";
-            square.textContent = square.id = row + (rows+1);
+            square.textContent = square.id = row + (rows + 1);
 
             //create squares
             board.appendChild(square);
@@ -24,12 +41,14 @@ function createGrid() {
     }
 }
 
+/*
 function addDrags() {
-    ships = document.getElementsByClassName("ship");
+    let ships = document.getElementsByClassName("ship");
     for (i = 0; i < ships.length; i++) {
         console.log(ships[i]);
         ships[i].setAttribute("draggable", "true");
     }
 }
+*/
 
 window.onload = init;
