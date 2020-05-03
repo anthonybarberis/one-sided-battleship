@@ -2,6 +2,8 @@ function init() {
     createGrid();
     createShips();
     resizeShips();
+
+    window.onresize = resizeShips;
 }
 
 let ships = [
