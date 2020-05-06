@@ -55,6 +55,7 @@ main p {
 
 .ship {
     border: 1px solid purple;
+    background-color: lightgray;
     display: flex;
     align-items: center;
     justify-content: center;
