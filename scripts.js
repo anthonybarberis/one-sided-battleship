@@ -121,6 +121,7 @@ function clickShip(event) {
     //console.log(event);
 }
 
+/* deprecated for custom implementation
 function allowDropShip() {
     event.preventDefault();
 }
@@ -131,6 +132,7 @@ function dropShip(event) {
     //console.log(ships);
     //console.log(event);
 }
+*/
 
 window.onload = init;
 
