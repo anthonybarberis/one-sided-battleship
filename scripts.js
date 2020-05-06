@@ -66,7 +66,7 @@ function createShips() {
         ship.className += "ship";
         ship.textContent = ship.id = ships[i].name;
         ship.setAttribute("draggable", "true");
-        ship.setAttribute("ondragstart", "dragShip(event)");
+        //ship.setAttribute("ondragstart", "dragShip(event)"); deprecated, to remove
         ship.setAttribute("onmousedown", "clickShip(event)");
 
         //create ship
