@@ -108,7 +108,7 @@ function allowDropShip() {
 function dropShip(event) {
     event.preventDefault();
     ships[ships.findIndex(ships => ships.name == activeShip)].square = event.target.id; //find the index of the active ship and save the square location to it
-    console.log(ships);
+    //console.log(ships);
     //console.log(event);
 }
 
