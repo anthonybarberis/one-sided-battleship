@@ -30,6 +30,8 @@ let gridSize = {};
 
 let rotation = 'horizontal';
 
+let activeShip = ""
+
 function createGrid() {
     let board = document.getElementById("board");
 
@@ -94,7 +96,9 @@ function resizeShips() {
 }
 
 function dragShip(event) {
-    console.log(event);
+    activeShip = event.target.id;
+    console.log(activeShip);
+    //console.log(event);
 }
 
 function allowDropShip() {
@@ -103,7 +107,9 @@ function allowDropShip() {
 
 function dropShip(event) {
     event.preventDefault();
-    console.log(event);
+    ships[ships.findIndex(ships => ships.name == activeShip)].square = event.target.id;
+    console.log(ships);
+    //console.log(event);
 }
 
 window.onload = init;
