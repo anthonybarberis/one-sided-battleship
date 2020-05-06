@@ -101,7 +101,7 @@ function holdShip(event) {
     activeShip.id = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     document.addEventListener('mouseup', dropShip);
-    document.addEventListener('mousemove', moveShip);
+    document.addEventListener('mousemove', dragShip);
     document.getElementById(activeShip.id).classList.add("held");
 
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
@@ -109,6 +109,7 @@ function holdShip(event) {
     shipCopy.style.position = "absolute";
     shipCopy.style.zIndex = 999;
     document.body.appendChild(shipCopy);
+    moveShip(event);
 
     //console.log(activeShip)
 
@@ -116,13 +117,20 @@ function holdShip(event) {
         console.log(event);
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
-        document.removeEventListener('mousemove', moveShip);
+        document.removeEventListener('mousemove', dragShip);
         shipCopy.remove();
         activeShip.index = activeShip.id = "";
         //console.log(activeShip)
     }
 
+    function dragShip(event) {
+    }
+
     function moveShip(event) {
+        console.log(event);
+        shipCopy.style.left = event.pageX + "px";
+        shipCopy.style.top = event.pageY + "px";
+        console.log(shipCopy.style);
     }
 
     //console.log(event);
