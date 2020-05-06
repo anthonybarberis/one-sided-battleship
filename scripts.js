@@ -120,7 +120,8 @@ function holdShip(event) {
 
     //console.log(activeShip)
 
-    function dropShip() {
+    function dropShip(event) {
+        console.log(event);
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
         document.removeEventListener('mousemove', moveShip);
@@ -130,7 +131,6 @@ function holdShip(event) {
     }
 
     function moveShip(event) {
-        console.log(event);
     }
 
     //console.log(event);
