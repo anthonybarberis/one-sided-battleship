@@ -1,5 +1,6 @@
 function init() {
     createGrid();
+    measureGrid();
     createShips();
     resizeShips();
 }
@@ -25,6 +26,8 @@ let ships = [{
         size: 2
     }
 ]
+
+let grid = {}
 
 let gridSize = {};
 
@@ -53,6 +56,18 @@ function createGrid() {
 
             //create square
             board.appendChild(square);
+        }
+    }
+}
+
+function measureGrid() {
+    let squares = document.getElementsByClassName("square");
+    for (i = 0; i < squares.length; i++) {
+        grid[squares[i].id] = {
+            offsetHeight: squares[i].offsetHeight,
+            offsetLeft: squares[i].offsetLeft,
+            offsetTop: squares[i].offsetTop,
+            offsetWidth: squares[i].offsetWidth
         }
     }
 }
@@ -135,6 +150,7 @@ function holdShip(event) {
 window.onload = init;
 
 window.onresize = resizeShips;
+window.onresize = measureGrid;
 
 //listen for "r" to rotate ships
 document.addEventListener('keydown', function(event) {
