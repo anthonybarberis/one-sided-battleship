@@ -110,6 +110,7 @@ function holdShip(event) {
     activeShip.id = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     document.addEventListener('mouseup', dropShip);
+    document.addEventListener('mousemove', moveShip);
     document.getElementById(activeShip.id).classList.add("held");
 
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
@@ -122,9 +123,14 @@ function holdShip(event) {
     function dropShip() {
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
+        document.removeEventListener('mousemove', moveShip);
         shipCopy.remove();
         activeShip.index = activeShip.id = "";
         //console.log(activeShip)
+    }
+
+    function moveShip(event) {
+        console.log(event);
     }
 
     //console.log(event);
