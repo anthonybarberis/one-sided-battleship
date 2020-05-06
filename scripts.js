@@ -108,32 +108,28 @@ function holdShip(event) {
     shipCopy.classList.remove("held");
     shipCopy.style.position = "absolute";
     shipCopy.style.zIndex = 999;
+    shipCopy.style.margin = 0;
+    console.log(shipCopy);
     document.body.appendChild(shipCopy);
     moveShip(event);
 
-    //console.log(activeShip)
-
     function dropShip(event) {
-        console.log(event);
+        console.log(shipCopy);
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
         document.removeEventListener('mousemove', dragShip);
         shipCopy.remove();
         activeShip.index = activeShip.id = "";
-        //console.log(activeShip)
     }
 
     function dragShip(event) {
+        moveShip(event);
     }
 
     function moveShip(event) {
-        console.log(event);
-        shipCopy.style.left = event.pageX + "px";
-        shipCopy.style.top = event.pageY + "px";
-        console.log(shipCopy.style);
+        shipCopy.style.left = event.pageX - shipCopy.offsetWidth / 2 + "px";
+        shipCopy.style.top = event.pageY - shipCopy.offsetHeight / 2 + "px";
     }
-
-    //console.log(event);
 }
 
 window.onload = init;
