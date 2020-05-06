@@ -65,8 +65,6 @@ function createShips() {
         let ship = document.createElement("div");
         ship.className += "ship";
         ship.textContent = ship.id = ships[i].name;
-        //ship.setAttribute("draggable", "true");
-        //ship.setAttribute("ondragstart", "dragShip(event)"); deprecated, to remove
         ship.setAttribute("onmousedown", "holdShip(event)");
 
         //create ship
@@ -99,13 +97,6 @@ function resizeShips() {
     }
 }
 
-/*deprecated for holdShip
-function dragShip(event) {
-    //console.log(activeShip);
-    //console.log(event);
-}
-*/
-
 function holdShip(event) {
     activeShip.id = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
@@ -115,8 +106,9 @@ function holdShip(event) {
 
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
     shipCopy.classList.remove("held");
-    shipCopy.id = "heldship";
-    document.getElementById("tray").appendChild(shipCopy);
+    shipCopy.style.position = "absolute";
+    shipCopy.style.zIndex = 999;
+    document.body.appendChild(shipCopy);
 
     //console.log(activeShip)
 
@@ -135,19 +127,6 @@ function holdShip(event) {
 
     //console.log(event);
 }
-
-/* deprecated for custom implementation
-function allowDropShip() {
-    event.preventDefault();
-}
-
-function dropShip(event) {
-    event.preventDefault();
-    ships[activeShip.index].square = event.target.id; //find the index of the active ship and save the square location to it
-    //console.log(ships);
-    //console.log(event);
-}
-*/
 
 window.onload = init;
 
