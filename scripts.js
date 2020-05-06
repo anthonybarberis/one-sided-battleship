@@ -43,6 +43,8 @@ function createGrid() {
             let square = document.createElement("div");
             square.className += "square";
             square.textContent = square.id = row + (rows + 1);
+            square.setAttribute("ondragover", "allowDropShip(event)");
+            square.setAttribute("ondrop", "dropShip(event)");
 
             //create square
             board.appendChild(square);
@@ -59,6 +61,7 @@ function createShips() {
         ship.className += "ship";
         ship.textContent = ship.id = ships[i].name;
         ship.setAttribute("draggable", "true");
+        ship.setAttribute("ondragstart", "dragShip(event)");
 
         //create ship
         tray.appendChild(ship);
@@ -90,6 +93,18 @@ function resizeShips() {
     }
 }
 
+function dragShip(event) {
+    console.log(event);
+}
+
+function allowDropShip() {
+    event.preventDefault();
+}
+
+function dropShip(event) {
+    event.preventDefault();
+    console.log(event);
+}
 
 window.onload = init;
 
