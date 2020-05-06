@@ -30,7 +30,10 @@ let gridSize = {};
 
 let rotation = 'horizontal';
 
-let activeShip = ""
+let activeShip = {
+    id: "",
+    index: ""
+}
 
 function createGrid() {
     let board = document.getElementById("board");
@@ -64,6 +67,7 @@ function createShips() {
         ship.textContent = ship.id = ships[i].name;
         ship.setAttribute("draggable", "true");
         ship.setAttribute("ondragstart", "dragShip(event)");
+        ship.setAttribute("onmousedown", "clickShip(event)");
 
         //create ship
         tray.appendChild(ship);
@@ -96,9 +100,14 @@ function resizeShips() {
 }
 
 function dragShip(event) {
-    activeShip = event.target.id;
+    activeShip.name = event.target.id;
+    activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     //console.log(activeShip);
     //console.log(event);
+}
+
+function clickShip(event) {
+    console.log(event);
 }
 
 function allowDropShip() {
@@ -107,7 +116,7 @@ function allowDropShip() {
 
 function dropShip(event) {
     event.preventDefault();
-    ships[ships.findIndex(ships => ships.name == activeShip)].square = event.target.id; //find the index of the active ship and save the square location to it
+    ships[activeShip.index].square = event.target.id; //find the index of the active ship and save the square location to it
     //console.log(ships);
     //console.log(event);
 }
