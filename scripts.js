@@ -109,6 +109,8 @@ function dragShip(event) {
 function clickShip(event) {
     activeShip.name = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
+    let heldShip = document.getElementById(activeShip.name);
+    heldShip.classList.add("held");
     //console.log(event);
 }
 

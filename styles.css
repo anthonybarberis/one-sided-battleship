@@ -64,3 +64,7 @@ main p {
 .ship:hover {
     background-color: grey;
 }
+
+.held {
+    display: none;
+}
