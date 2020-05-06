@@ -149,8 +149,10 @@ function holdShip(event) {
 
 window.onload = init;
 
-window.onresize = resizeShips;
-window.onresize = measureGrid;
+window.addEventListener('resize', function() {
+    resizeShips();
+    measureGrid();
+})
 
 //listen for "r" to rotate ships
 document.addEventListener('keydown', function(event) {
