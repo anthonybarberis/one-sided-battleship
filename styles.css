@@ -62,5 +62,5 @@ main p {
 }
 
 .held {
-    background-color: red;
+    display: none;
 }

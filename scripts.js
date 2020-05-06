@@ -67,7 +67,7 @@ function createShips() {
         ship.textContent = ship.id = ships[i].name;
         //ship.setAttribute("draggable", "true");
         //ship.setAttribute("ondragstart", "dragShip(event)"); deprecated, to remove
-        ship.setAttribute("onmousedown", "clickShip(event)");
+        ship.setAttribute("onmousedown", "holdShip(event)");
 
         //create ship
         tray.appendChild(ship);
@@ -99,23 +99,32 @@ function resizeShips() {
     }
 }
 
-/*deprecated for clickShip
+/*deprecated for holdShip
 function dragShip(event) {
     //console.log(activeShip);
     //console.log(event);
 }
 */
 
-function clickShip(event) {
-    activeShip.name = event.target.id;
+function holdShip(event) {
+    activeShip.id = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     document.addEventListener('mouseup', dropShip);
-    document.getElementById(activeShip.name).classList.add("held");
+    document.getElementById(activeShip.id).classList.add("held");
+
+    shipCopy = document.getElementById(activeShip.id).cloneNode(true);
+    shipCopy.classList.remove("held");
+    shipCopy.id = "heldship";
+    document.getElementById("tray").appendChild(shipCopy);
+
+    //console.log(activeShip)
 
     function dropShip() {
-        document.getElementById(activeShip.name).classList.remove("held");
-        console.log(activeShip);
+        document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
+        shipCopy.remove();
+        activeShip.index = activeShip.id = "";
+        //console.log(activeShip)
     }
 
     //console.log(event);
