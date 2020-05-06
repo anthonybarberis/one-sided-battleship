@@ -99,15 +99,17 @@ function resizeShips() {
     }
 }
 
+/*deprecated for clickShip
 function dragShip(event) {
-    activeShip.name = event.target.id;
-    activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     //console.log(activeShip);
     //console.log(event);
 }
+*/
 
 function clickShip(event) {
-    console.log(event);
+    activeShip.name = event.target.id;
+    activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
+    //console.log(event);
 }
 
 function allowDropShip() {
