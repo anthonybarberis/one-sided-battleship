@@ -97,7 +97,7 @@ function resizeShips() {
 
 function dragShip(event) {
     activeShip = event.target.id;
-    console.log(activeShip);
+    //console.log(activeShip);
     //console.log(event);
 }
 
@@ -107,7 +107,7 @@ function allowDropShip() {
 
 function dropShip(event) {
     event.preventDefault();
-    ships[ships.findIndex(ships => ships.name == activeShip)].square = event.target.id;
+    ships[ships.findIndex(ships => ships.name == activeShip)].square = event.target.id; //find the index of the active ship and save the square location to it
     console.log(ships);
     //console.log(event);
 }
