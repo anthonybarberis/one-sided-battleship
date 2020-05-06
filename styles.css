@@ -61,10 +61,6 @@ main p {
     margin: 10px;
 }
 
-.ship:hover {
-    background-color: grey;
-}
-
 .held {
-    display: none;
+    background-color: red;
 }

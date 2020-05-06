@@ -109,8 +109,10 @@ function dragShip(event) {
 function clickShip(event) {
     activeShip.name = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
-    let heldShip = document.getElementById(activeShip.name);
-    heldShip.classList.add("held");
+    document.addEventListener('mouseup', function() {
+        document.getElementById(activeShip.name).classList.remove("held");
+    });
+    document.getElementById(activeShip.name).classList.add("held");
     //console.log(event);
 }
 
