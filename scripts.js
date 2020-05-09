@@ -122,12 +122,10 @@ function holdShip(event) {
     shipCopy.style.position = "absolute";
     shipCopy.style.zIndex = 999;
     shipCopy.style.margin = 0;
-    console.log(shipCopy);
     document.body.appendChild(shipCopy);
     moveShip(event);
 
     function dropShip(event) {
-        console.log(shipCopy);
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
         document.removeEventListener('mousemove', dragShip);
