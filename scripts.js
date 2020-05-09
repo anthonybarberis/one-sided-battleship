@@ -148,6 +148,7 @@ function holdShip(event) {
         ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
 
         //compare the position of the ship to every grid square to find overlap
+        console.log("Overlap with: ")
         for (i = 0; i < grid.length; i++) {
             if (!(
                 grid[i].boundingClientRect.right < ships[activeShip.index].boundingClientRect.left ||
@@ -155,7 +156,7 @@ function holdShip(event) {
                 grid[i].boundingClientRect.bottom < ships[activeShip.index].boundingClientRect.top ||
                 grid[i].boundingClientRect.top > ships[activeShip.index].boundingClientRect.bottom
             )) {
-                console.log(`Overlap with: ${grid[i].id}`);
+                console.log(grid[i].id);
             }
         }
     }
