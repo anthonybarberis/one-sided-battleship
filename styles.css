@@ -65,3 +65,7 @@ main p {
 .held {
     display: none;
 }
+
+.overlap {
+    background-color: grey;
+}
