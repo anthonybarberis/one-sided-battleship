@@ -6,28 +6,28 @@ function init() {
 }
 
 let ships = [{
-        name: "Carrier",
-        size: 5
-    },
-    {
-        name: "Battleship",
-        size: 4
-    },
-    {
-        name: "Cruiser",
-        size: 3
-    },
-    {
-        name: "Submarine",
-        size: 3
-    },
-    {
-        name: "Destroyer",
-        size: 2
-    }
+    name: "Carrier",
+    size: 5
+},
+{
+    name: "Battleship",
+    size: 4
+},
+{
+    name: "Cruiser",
+    size: 3
+},
+{
+    name: "Submarine",
+    size: 3
+},
+{
+    name: "Destroyer",
+    size: 2
+}
 ]
 
-let grid = {}
+let grid = [];
 
 let gridSize = {};
 
@@ -63,11 +63,9 @@ function createGrid() {
 function measureGrid() {
     let squares = document.getElementsByClassName("square");
     for (i = 0; i < squares.length; i++) {
-        grid[squares[i].id] = {
-            offsetHeight: squares[i].offsetHeight,
-            offsetLeft: squares[i].offsetLeft,
-            offsetTop: squares[i].offsetTop,
-            offsetWidth: squares[i].offsetWidth
+        grid[i] = {
+            id: squares[i].id,
+            boundingClientRect: squares[i].getBoundingClientRect()
         }
     }
 }
@@ -149,13 +147,13 @@ function holdShip(event) {
 
 window.onload = init;
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
     resizeShips();
     measureGrid();
 })
 
 //listen for "r" to rotate ships
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.code == 'KeyR') {
         if (rotation == 'horizontal') {
             rotation = 'vertical';
