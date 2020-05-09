@@ -117,6 +117,8 @@ function holdShip(event) {
     document.addEventListener('mousemove', dragShip);
     document.getElementById(activeShip.id).classList.add("held");
 
+    let overlapSquares = [];
+
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
     shipCopy.classList.remove("held");
     shipCopy.style.position = "absolute";
@@ -130,7 +132,7 @@ function holdShip(event) {
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
         document.removeEventListener('mousemove', dragShip);
-        
+
         //clean up the moving ship
         shipCopy.remove();
         activeShip.index = activeShip.id = "";
@@ -150,7 +152,7 @@ function holdShip(event) {
         ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
 
         //compare the position of the ship to every grid square to find overlap
-        let overlapSquares = [];
+        overlapSquares = [];
         for (i = 0; i < grid.length; i++) {
             if (!(
                 (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
@@ -163,8 +165,8 @@ function holdShip(event) {
             } else {
                 document.getElementById(grid[i].id).classList.remove("overlap");
             }
-        return overlapSquares;
         }
+        console.log(overlapSquares);
     }
 }
 
