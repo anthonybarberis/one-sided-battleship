@@ -121,10 +121,7 @@ function holdShip(event) {
 
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
     shipCopy.classList.remove("held");
-    shipCopy.style.position = "absolute";
-    shipCopy.style.zIndex = 999;
-    shipCopy.style.margin = 0;
-    shipCopy.style.opacity = "85%";
+    shipCopy.classList.add("shipCopy");
     document.body.appendChild(shipCopy);
     moveShip(event);
 

@@ -62,6 +62,13 @@ main p {
     margin: 10px;
 }
 
+.shipcopy {
+    position: "absolute";
+    z-index: 999;
+    margin: 0;
+    opacity : 85;
+}
+
 .held {
     display: none;
 }
