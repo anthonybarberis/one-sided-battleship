@@ -140,9 +140,24 @@ function holdShip(event) {
     }
 
     function moveShip(event) {
+        //move the ship
         shipCopy.style.left = event.pageX - shipCopy.offsetWidth / 2 + "px";
         shipCopy.style.top = event.pageY - shipCopy.offsetHeight / 2 + "px";
+
+        //measure the position of the ship
         ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
+
+        //compare the position of the ship to every grid square to find overlap
+        for (i = 0; i < grid.length; i++) {
+            if (!(
+                grid[i].boundingClientRect.right < ships[activeShip.index].boundingClientRect.left ||
+                grid[i].boundingClientRect.left > ships[activeShip.index].boundingClientRect.right ||
+                grid[i].boundingClientRect.bottom < ships[activeShip.index].boundingClientRect.top ||
+                grid[i].boundingClientRect.top > ships[activeShip.index].boundingClientRect.bottom
+            )) {
+                console.log(`Overlap with: ${grid[i].id}`);
+            }
+        }
     }
 }
 
