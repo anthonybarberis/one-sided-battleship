@@ -131,8 +131,11 @@ function holdShip(event) {
         document.getElementById(activeShip.id).classList.remove("held");
         document.removeEventListener('mouseup', dropShip);
         document.removeEventListener('mousemove', dragShip);
+        
+        //clean up the moving ship
         shipCopy.remove();
         activeShip.index = activeShip.id = "";
+        Array.from(document.getElementsByClassName('square')).forEach(element => element.classList.remove("overlap"));
     }
 
     function dragShip(event) {
