@@ -122,6 +122,7 @@ function holdShip(event) {
     shipCopy.style.position = "absolute";
     shipCopy.style.zIndex = 999;
     shipCopy.style.margin = 0;
+    shipCopy.style.opacity = "75%";
     document.body.appendChild(shipCopy);
     moveShip(event);
 
@@ -149,17 +150,20 @@ function holdShip(event) {
         ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
 
         //compare the position of the ship to every grid square to find overlap
+        let overlapSquares = [];
         for (i = 0; i < grid.length; i++) {
             if (!(
-                grid[i].boundingClientRect.right < ships[activeShip.index].boundingClientRect.left ||
-                grid[i].boundingClientRect.left > ships[activeShip.index].boundingClientRect.right ||
-                grid[i].boundingClientRect.bottom < ships[activeShip.index].boundingClientRect.top ||
-                grid[i].boundingClientRect.top > ships[activeShip.index].boundingClientRect.bottom
+                (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
+                (grid[i].boundingClientRect.left + grid[i].boundingClientRect.width / 2) > ships[activeShip.index].boundingClientRect.right ||
+                (grid[i].boundingClientRect.bottom - grid[i].boundingClientRect.height / 2) < ships[activeShip.index].boundingClientRect.top ||
+                (grid[i].boundingClientRect.top + grid[i].boundingClientRect.height / 2) > ships[activeShip.index].boundingClientRect.bottom
             )) {
                 document.getElementById(grid[i].id).classList.add("overlap");
+                overlapSquares.push(grid[i].id);
             } else {
                 document.getElementById(grid[i].id).classList.remove("overlap");
             }
+        return overlapSquares;
         }
     }
 }
