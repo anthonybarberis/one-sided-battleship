@@ -142,6 +142,7 @@ function holdShip(event) {
     function moveShip(event) {
         shipCopy.style.left = event.pageX - shipCopy.offsetWidth / 2 + "px";
         shipCopy.style.top = event.pageY - shipCopy.offsetHeight / 2 + "px";
+        ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
     }
 }
 
