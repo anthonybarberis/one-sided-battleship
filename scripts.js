@@ -133,6 +133,13 @@ function dropShip() {
     document.removeEventListener('mouseup', dropShip);
     document.removeEventListener('mousemove', moveShip);
 
+    if (ships[activeShip.index].placement.length == ships[activeShip.index].size) {
+        placedShip = shipCopy.cloneNode(true);
+        document.getElementById(activeShip.id).remove();
+        document.body.appendChild(placedShip);
+
+    }
+
     //clean up the moving ship
     shipCopy.remove();
     activeShip.index = activeShip.id = "";
