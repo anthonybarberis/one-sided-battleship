@@ -45,21 +45,16 @@ let activeShip = {
 
 function createGrid() {
     let board = document.getElementById("board");
-
     let rowLabels = "ABCDEFGHIJ"
 
     for (columns = 0; columns < 10; columns++) {
         let row = rowLabels.slice(columns, columns + 1)
         for (rows = 0; rows < 10; rows++) {
 
-            //create square node
+            //create square
             let square = document.createElement("div");
             square.className += "square";
             square.textContent = square.id = row + (rows + 1);
-            square.setAttribute("ondragover", "allowDropShip(event)");
-            square.setAttribute("ondrop", "dropShip(event)");
-
-            //create square
             board.appendChild(square);
         }
     }
