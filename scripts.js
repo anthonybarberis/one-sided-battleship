@@ -130,15 +130,15 @@ function holdShip(event) {
 }
 
 function dropShip() {
-    document.getElementById(activeShip.id).style.display = "flex";
     document.removeEventListener('mouseup', dropShip);
     document.removeEventListener('mousemove', moveShip);
 
     if (ships[activeShip.index].placement.length == ships[activeShip.index].size) {
         placedShip = shipCopy.cloneNode(true);
-        document.getElementById(activeShip.id).remove();
         document.body.appendChild(placedShip);
 
+    } else {
+        document.getElementById(activeShip.id).style.display = "flex";
     }
 
     //clean up the moving ship
