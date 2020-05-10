@@ -175,6 +175,8 @@ function moveShip(event) {
     if (overlapSquares.length == ships[activeShip.index].size) {
         ships[activeShip.index].placement = overlapSquares;
         overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
+    } else {
+        ships[activeShip.index].placement = [];
     }
 }
 
