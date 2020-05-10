@@ -160,13 +160,18 @@ function holdShip(event) {
                 (grid[i].boundingClientRect.bottom - grid[i].boundingClientRect.height / 2) < ships[activeShip.index].boundingClientRect.top ||
                 (grid[i].boundingClientRect.top + grid[i].boundingClientRect.height / 2) > ships[activeShip.index].boundingClientRect.bottom
             )) {
-                document.getElementById(grid[i].id).classList.add("overlap");
+                //document.getElementById(grid[i].id).classList.add("overlap");
                 overlapSquares.push(grid[i].id);
             } else {
                 document.getElementById(grid[i].id).classList.remove("overlap");
             }
         }
-        console.log(overlapSquares);
+        //if overlap matched ship size, record the placement and style the grid
+        if (overlapSquares.length == ships[activeShip.index].size) {
+            console.log(overlapSquares);
+            ships[activeShip.index].placement = overlapSquares;
+            overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
+        }
     }
 }
 
