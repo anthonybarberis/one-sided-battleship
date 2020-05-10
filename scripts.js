@@ -204,6 +204,8 @@ function resetShips() {
     Array.from(document.getElementsByClassName('shipcopy')).forEach(element => element.remove());
     ships.forEach(element => element.placement = []);
     document.getElementById("placements").innerHTML = "";
+    overlapSquares = [];
+    usedSquares = [];
 }
 
 window.onload = init;
