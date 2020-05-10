@@ -97,13 +97,13 @@ function resizeShips() {
     for (i = 0; i < extantShips.length; i++) {
         switch (rotation) {
             case 'horizontal':
-                extantShips[i].style.width = `${ships[i].size * gridSize.offset}px`;
+                extantShips[i].style.width = `${ships[i].size * gridSize.offset - 1 * ships[i].size / 2}px`;
                 extantShips[i].style.height = `${gridSize.offset}px`;
                 extantShips[i].style['writing-mode'] = "initial";
                 break;
             case 'vertical':
                 extantShips[i].style.width = `${gridSize.offset}px`;
-                extantShips[i].style.height = `${ships[i].size * gridSize.offset}px`;
+                extantShips[i].style.height = `${ships[i].size * gridSize.offset - 1 * ships[i].size / 2}px`;
                 extantShips[i].style['writing-mode'] = "vertical-rl";
                 break;
         }
