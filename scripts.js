@@ -181,11 +181,18 @@ function moveShip(event) {
     }
 }
 
+function resetShips() {
+    Array.from(document.getElementsByClassName('ship')).forEach(element => element.style.display = "flex");
+    Array.from(document.getElementsByClassName('shipcopy')).forEach(element => element.remove());
+    ships.forEach(element => element.placement = []);
+}
+
 window.onload = init;
 
 window.addEventListener('resize', function () {
     resizeShips();
     measureGrid();
+    resetShips();
 })
 
 //listen for "r" to rotate ships
