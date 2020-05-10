@@ -43,6 +43,9 @@ let activeShip = {
     index: ""
 }
 
+let overlapSquares = [];
+let usedSquares = [];
+
 function createGrid() {
     let board = document.getElementById("board");
     let rowLabels = "ABCDEFGHIJ"
@@ -146,11 +149,8 @@ function dropShip() {
         let placementText = document.createElement("p");
         placementText.classList.add("placementtext");
         placementText.textContent = `${activeShip.id} at: ${ships[activeShip.index].placement}`;
-        document.getElementById("placements").appendChild(placementText)
-
-        
-
-
+        document.getElementById("placements").appendChild(placementText);
+        overlapSquares.forEach(element => usedSquares.push(element));    
     } else {
         document.getElementById(activeShip.id).style.display = "flex";
     }
@@ -170,7 +170,7 @@ function moveShip(event) {
     ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
 
     //compare the position of the ship to every grid square to find overlap
-    let overlapSquares = [];
+    overlapSquares = [];
     for (i = 0; i < grid.length; i++) {
         if (!(
                 (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
@@ -183,13 +183,20 @@ function moveShip(event) {
             document.getElementById(grid[i].id).classList.remove("overlap");
         }
     }
-    //if overlap matched ship size, record the placement and style the grid
-    if (overlapSquares.length == ships[activeShip.index].size) {
-        ships[activeShip.index].placement = overlapSquares;
-        overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
-    } else {
+    //dont allow a ship to overlay another placed ship
+    if (overlapSquares.some(x => usedSquares.includes(x))) {
+        shipCopy.style.background = "red";
         ships[activeShip.index].placement = [];
-    }
+    } else {
+        shipCopy.style.background = "lightgrey";
+        //overlay must equal ship size - if so, record the position
+        if (overlapSquares.length == ships[activeShip.index].size) {
+            ships[activeShip.index].placement = overlapSquares;
+            overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
+        } else {
+            ships[activeShip.index].placement = [];
+        }
+    }    
 }
 
 function resetShips() {
