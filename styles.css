@@ -53,7 +53,7 @@ main p {
     background-color: grey;
 }
 
-.ship {
+.ship, .shipcopy {
     border: 1px solid purple;
     background-color: lightgray;
     display: flex;
