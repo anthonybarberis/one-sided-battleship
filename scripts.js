@@ -6,25 +6,30 @@ function init() {
 }
 
 let ships = [{
-    name: "Carrier",
-    size: 5
-},
-{
-    name: "Battleship",
-    size: 4
-},
-{
-    name: "Cruiser",
-    size: 3
-},
-{
-    name: "Submarine",
-    size: 3
-},
-{
-    name: "Destroyer",
-    size: 2
-}
+        name: "Carrier",
+        size: 5,
+        placement: []
+    },
+    {
+        name: "Battleship",
+        size: 4,
+        placement: []
+    },
+    {
+        name: "Cruiser",
+        size: 3,
+        placement: []
+    },
+    {
+        name: "Submarine",
+        size: 3,
+        placement: []
+    },
+    {
+        name: "Destroyer",
+        size: 2,
+        placement: []
+    }
 ]
 
 let grid = [];
@@ -128,7 +133,7 @@ function holdShip(event) {
     moveShip(event);
 }
 
-function dropShip(event) {
+function dropShip() {
     document.getElementById(activeShip.id).classList.remove("held");
     document.removeEventListener('mouseup', dropShip);
     document.removeEventListener('mousemove', moveShip);
@@ -151,11 +156,11 @@ function moveShip(event) {
     let overlapSquares = [];
     for (i = 0; i < grid.length; i++) {
         if (!(
-            (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
-            (grid[i].boundingClientRect.left + grid[i].boundingClientRect.width / 2) > ships[activeShip.index].boundingClientRect.right ||
-            (grid[i].boundingClientRect.bottom - grid[i].boundingClientRect.height / 2) < ships[activeShip.index].boundingClientRect.top ||
-            (grid[i].boundingClientRect.top + grid[i].boundingClientRect.height / 2) > ships[activeShip.index].boundingClientRect.bottom
-        )) {
+                (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
+                (grid[i].boundingClientRect.left + grid[i].boundingClientRect.width / 2) > ships[activeShip.index].boundingClientRect.right ||
+                (grid[i].boundingClientRect.bottom - grid[i].boundingClientRect.height / 2) < ships[activeShip.index].boundingClientRect.top ||
+                (grid[i].boundingClientRect.top + grid[i].boundingClientRect.height / 2) > ships[activeShip.index].boundingClientRect.bottom
+            )) {
             overlapSquares.push(grid[i].id);
         } else {
             document.getElementById(grid[i].id).classList.remove("overlap");
@@ -163,7 +168,6 @@ function moveShip(event) {
     }
     //if overlap matched ship size, record the placement and style the grid
     if (overlapSquares.length == ships[activeShip.index].size) {
-        console.log(overlapSquares);
         ships[activeShip.index].placement = overlapSquares;
         overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
     }
