@@ -114,10 +114,8 @@ function holdShip(event) {
     activeShip.id = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     document.addEventListener('mouseup', dropShip);
-    document.addEventListener('mousemove', dragShip);
+    document.addEventListener('mousemove', moveShip);
     document.getElementById(activeShip.id).classList.add("held");
-
-    let overlapSquares = [];
 
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
     shipCopy.classList.remove("held");
@@ -127,51 +125,46 @@ function holdShip(event) {
     shipCopy.style.opacity = "85%";
     document.body.appendChild(shipCopy);
     moveShip(event);
+}
 
-    function dropShip(event) {
-        document.getElementById(activeShip.id).classList.remove("held");
-        document.removeEventListener('mouseup', dropShip);
-        document.removeEventListener('mousemove', dragShip);
+function dropShip(event) {
+    document.getElementById(activeShip.id).classList.remove("held");
+    document.removeEventListener('mouseup', dropShip);
+    document.removeEventListener('mousemove', moveShip);
 
-        //clean up the moving ship
-        shipCopy.remove();
-        activeShip.index = activeShip.id = "";
-        Array.from(document.getElementsByClassName('square')).forEach(element => element.classList.remove("overlap"));
-    }
+    //clean up the moving ship
+    shipCopy.remove();
+    activeShip.index = activeShip.id = "";
+    Array.from(document.getElementsByClassName('square')).forEach(element => element.classList.remove("overlap"));
+}
 
-    function dragShip(event) {
-        moveShip(event);
-    }
+function moveShip(event) {
+    //move the ship
+    shipCopy.style.left = event.pageX - shipCopy.offsetWidth / 2 + "px";
+    shipCopy.style.top = event.pageY - shipCopy.offsetHeight / 2 + "px";
 
-    function moveShip(event) {
-        //move the ship
-        shipCopy.style.left = event.pageX - shipCopy.offsetWidth / 2 + "px";
-        shipCopy.style.top = event.pageY - shipCopy.offsetHeight / 2 + "px";
+    //measure the position of the ship
+    ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
 
-        //measure the position of the ship
-        ships[activeShip.index].boundingClientRect = shipCopy.getBoundingClientRect();
-
-        //compare the position of the ship to every grid square to find overlap
-        overlapSquares = [];
-        for (i = 0; i < grid.length; i++) {
-            if (!(
-                (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
-                (grid[i].boundingClientRect.left + grid[i].boundingClientRect.width / 2) > ships[activeShip.index].boundingClientRect.right ||
-                (grid[i].boundingClientRect.bottom - grid[i].boundingClientRect.height / 2) < ships[activeShip.index].boundingClientRect.top ||
-                (grid[i].boundingClientRect.top + grid[i].boundingClientRect.height / 2) > ships[activeShip.index].boundingClientRect.bottom
-            )) {
-                //document.getElementById(grid[i].id).classList.add("overlap");
-                overlapSquares.push(grid[i].id);
-            } else {
-                document.getElementById(grid[i].id).classList.remove("overlap");
-            }
+    //compare the position of the ship to every grid square to find overlap
+    let overlapSquares = [];
+    for (i = 0; i < grid.length; i++) {
+        if (!(
+            (grid[i].boundingClientRect.right - grid[i].boundingClientRect.width / 2) < ships[activeShip.index].boundingClientRect.left ||
+            (grid[i].boundingClientRect.left + grid[i].boundingClientRect.width / 2) > ships[activeShip.index].boundingClientRect.right ||
+            (grid[i].boundingClientRect.bottom - grid[i].boundingClientRect.height / 2) < ships[activeShip.index].boundingClientRect.top ||
+            (grid[i].boundingClientRect.top + grid[i].boundingClientRect.height / 2) > ships[activeShip.index].boundingClientRect.bottom
+        )) {
+            overlapSquares.push(grid[i].id);
+        } else {
+            document.getElementById(grid[i].id).classList.remove("overlap");
         }
-        //if overlap matched ship size, record the placement and style the grid
-        if (overlapSquares.length == ships[activeShip.index].size) {
-            console.log(overlapSquares);
-            ships[activeShip.index].placement = overlapSquares;
-            overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
-        }
+    }
+    //if overlap matched ship size, record the placement and style the grid
+    if (overlapSquares.length == ships[activeShip.index].size) {
+        console.log(overlapSquares);
+        ships[activeShip.index].placement = overlapSquares;
+        overlapSquares.forEach(element => document.getElementById(element).classList.add("overlap"))
     }
 }
 
