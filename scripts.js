@@ -138,6 +138,7 @@ function dropShip() {
 
     if (ships[activeShip.index].placement.length == ships[activeShip.index].size) {
         placedShip = shipCopy.cloneNode(true);
+        placedShip.style.opacity = "100%";
         document.body.appendChild(placedShip);
 
     } else {
