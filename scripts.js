@@ -142,6 +142,13 @@ function dropShip() {
         placedShip.style.left = grid[grid.findIndex(grid => grid.id == ships[activeShip.index].placement[0])].boundingClientRect.left + "px";
         placedShip.style.top = grid[grid.findIndex(grid => grid.id == ships[activeShip.index].placement[0])].boundingClientRect.top + "px";
         document.body.appendChild(placedShip);
+        let placementText = document.createElement("p");
+        placementText.classList.add("placementtext");
+        placementText.textContent = `${activeShip.id} at: ${ships[activeShip.index].placement}`;
+        document.getElementById("tray").appendChild(placementText)
+
+        
+
 
     } else {
         document.getElementById(activeShip.id).style.display = "flex";
