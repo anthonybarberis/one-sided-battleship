@@ -110,6 +110,7 @@ function resizeShips() {
     }
 }
 
+//starts the process of moving a ship after mousedown
 function holdShip(event) {
     activeShip.id = event.target.id;
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
