@@ -116,20 +116,21 @@ function holdShip(event) {
     activeShip.index = ships.findIndex(ships => ships.name == event.target.id);
     document.addEventListener('mouseup', dropShip);
     document.addEventListener('mousemove', moveShip);
-    document.getElementById(activeShip.id).classList.add("held");
 
     shipCopy = document.getElementById(activeShip.id).cloneNode(true);
-    shipCopy.classList.remove("held");
     shipCopy.style.position = "absolute";
     shipCopy.style.zIndex = 999;
     shipCopy.style.margin = 0;
     shipCopy.style.opacity = "85%";
     document.body.appendChild(shipCopy);
+
+    document.getElementById(activeShip.id).style.display = "none";
+
     moveShip(event);
 }
 
 function dropShip() {
-    document.getElementById(activeShip.id).classList.remove("held");
+    document.getElementById(activeShip.id).style.display = "flex";
     document.removeEventListener('mouseup', dropShip);
     document.removeEventListener('mousemove', moveShip);
 

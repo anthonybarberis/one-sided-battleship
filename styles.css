@@ -62,7 +62,7 @@ main p {
     margin: 10px;
 }
 
-.held {
+.hidden {
     display: none;
 }
 
