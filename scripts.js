@@ -78,6 +78,7 @@ function createShips() {
         let ship = document.createElement("div");
         ship.className += "ship";
         ship.textContent = ship.id = ships[i].name;
+        ship.style.order = i;
         ship.setAttribute("onmousedown", "holdShip(event)");
 
         //create ship
@@ -145,7 +146,7 @@ function dropShip() {
         let placementText = document.createElement("p");
         placementText.classList.add("placementtext");
         placementText.textContent = `${activeShip.id} at: ${ships[activeShip.index].placement}`;
-        document.getElementById("tray").appendChild(placementText)
+        document.getElementById("placements").appendChild(placementText)
 
         
 
@@ -195,6 +196,7 @@ function resetShips() {
     Array.from(document.getElementsByClassName('ship')).forEach(element => element.style.display = "flex");
     Array.from(document.getElementsByClassName('shipcopy')).forEach(element => element.remove());
     ships.forEach(element => element.placement = []);
+    document.getElementById("placements").innerHTML = "";
 }
 
 window.onload = init;
