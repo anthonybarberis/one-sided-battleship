@@ -251,8 +251,8 @@ function attack(shots) {
             shot.classList.add("missshot");
         }
         
-        shot.style.left = shotsFired[i].boundingClientRect.left + "px";
-        shot.style.top = shotsFired[i].boundingClientRect.top + "px";
+        shot.style.left = shotsFired[i].boundingClientRect.left + shotsFired[i].boundingClientRect.width * .25 + "px";
+        shot.style.top = shotsFired[i].boundingClientRect.top + shotsFired[i].boundingClientRect.height * .25 + "px";
 
         document.body.appendChild(shot);
     }
