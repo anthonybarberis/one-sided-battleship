@@ -79,3 +79,15 @@ main p {
     order: 999;
     width: 100%;
 }
+
+.hitshot {
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.missshot {
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid black;
+}

@@ -150,7 +150,7 @@ function dropShip() {
         placementText.classList.add("placementtext");
         placementText.textContent = `${activeShip.id} at: ${ships[activeShip.index].placement}`;
         document.getElementById("placements").appendChild(placementText);
-        overlapSquares.forEach(element => usedSquares.push(element));    
+        overlapSquares.forEach(element => usedSquares.push(element));
     } else {
         document.getElementById(activeShip.id).style.display = "flex";
     }
@@ -196,7 +196,7 @@ function moveShip(event) {
         } else {
             ships[activeShip.index].placement = [];
         }
-    }    
+    }
 }
 
 function resetShips() {
@@ -227,3 +227,33 @@ document.addEventListener('keydown', function (event) {
         resizeShips();
     }
 })
+
+let shotsFired = [];
+
+function attack(shots) {
+
+    shotsFired = []
+
+    for (i = 0; i < shots; i++) {
+        let shot = document.createElement("div");
+        shot.style.position = "absolute";
+        shot.style.zIndex = 9999;
+        shot.style.margin = 0;
+        shot.style.width = gridSize.client / 2 + "px";
+        shot.style.height = gridSize.client / 2 + "px";
+        shot.id = `shot${i + 1}`;
+
+        shotsFired.push(grid[Math.floor(Math.random() * 100)]);
+        
+        if (usedSquares.includes(shotsFired[i].id)) {
+            shot.classList.add("hitshot");
+        } else {
+            shot.classList.add("missshot");
+        }
+        
+        shot.style.left = shotsFired[i].boundingClientRect.left + "px";
+        shot.style.top = shotsFired[i].boundingClientRect.top + "px";
+
+        document.body.appendChild(shot);
+    }
+}
