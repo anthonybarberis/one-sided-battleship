@@ -212,6 +212,7 @@ function resetShips() {
     document.getElementById("placements").innerHTML = "";
     overlapSquares = [];
     usedSquares = [];
+    Array.from(document.getElementsByClassName('shot')).forEach(element => element.remove());
 }
 
 window.onload = init;
@@ -253,6 +254,7 @@ function attack() {
         shot.style.width = gridSize.client / 2 + "px";
         shot.style.height = gridSize.client / 2 + "px";
         shot.id = `shot${i + 1}`;
+        shot.classList.add("shot");
 
         let guess = Math.floor(Math.random() * 100);
 
@@ -281,4 +283,5 @@ function attack() {
 function setBotControls() {
     let fireButton = document.getElementById("fireshots");
     fireButton.addEventListener("click", attack);
+    document.getElementById("shotcount").value = 10
 }
