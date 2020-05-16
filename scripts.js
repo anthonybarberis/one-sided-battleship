@@ -160,6 +160,11 @@ function dropShip() {
     shipCopy.remove();
     activeShip.index = activeShip.id = "";
     Array.from(document.getElementsByClassName('square')).forEach(element => element.classList.remove("overlap"));
+
+    if (usedSquares.length >= 17) {
+        document.getElementById("rotate").style.display = "none";
+        document.getElementById("botcontrols").style.display = "block";
+    }
 }
 
 function moveShip(event) {
