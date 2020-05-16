@@ -229,6 +229,7 @@ document.addEventListener('keydown', function (event) {
 })
 
 let shotsFired = [];
+let guesses = [];
 
 function attack(shots) {
 
@@ -243,14 +244,22 @@ function attack(shots) {
         shot.style.height = gridSize.client / 2 + "px";
         shot.id = `shot${i + 1}`;
 
-        shotsFired.push(grid[Math.floor(Math.random() * 100)]);
-        
+        let guess = Math.floor(Math.random() * 100);
+
+        if (guesses.includes(guess)) {
+            while (guesses.includes(guess)) {
+                guess = Math.floor(Math.random() * 100);
+            }
+        }
+        shotsFired.push(grid[guess]);
+        guesses.push(guess);
+
         if (usedSquares.includes(shotsFired[i].id)) {
             shot.classList.add("hitshot");
         } else {
             shot.classList.add("missshot");
         }
-        
+
         shot.style.left = shotsFired[i].boundingClientRect.left + shotsFired[i].boundingClientRect.width * .25 + "px";
         shot.style.top = shotsFired[i].boundingClientRect.top + shotsFired[i].boundingClientRect.height * .25 + "px";
 
