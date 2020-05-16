@@ -3,6 +3,7 @@ function init() {
     measureGrid();
     createShips();
     resizeShips();
+    setBotControls();
 }
 
 let ships = [{
@@ -231,11 +232,12 @@ document.addEventListener('keydown', function (event) {
 let shotsFired = [];
 let guesses = [];
 
-function attack(shots) {
+function attack() {
 
     shotsFired = []
+    let shotCount = document.getElementById("shotcount").value;
 
-    for (i = 0; i < shots; i++) {
+    for (i = 0; i < shotCount; i++) {
         let shot = document.createElement("div");
         shot.style.position = "absolute";
         shot.style.zIndex = 9999;
@@ -265,4 +267,10 @@ function attack(shots) {
 
         document.body.appendChild(shot);
     }
+    console.log("attack!");
+}
+
+function setBotControls() {
+    let fireButton = document.getElementById("fireshots");
+    fireButton.addEventListener("click", attack);
 }
