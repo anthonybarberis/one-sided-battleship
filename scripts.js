@@ -241,6 +241,9 @@ function attack() {
 
     shotsFired = []
     let shotCount = document.getElementById("shotcount").value;
+    if (shotCount > 100 - guesses.length) {
+        shotCount = 100 - guesses.length;
+    }
 
     for (i = 0; i < shotCount; i++) {
         let shot = document.createElement("div");
