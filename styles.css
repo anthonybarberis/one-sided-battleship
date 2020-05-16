@@ -10,7 +10,7 @@
 }
 
 main p {
-    margin: 10px;
+    margin: 10px 0 0 0;
 }
 
 #table {
@@ -90,4 +90,12 @@ main p {
     background-color: white;
     border-radius: 50%;
     border: 2px solid black;
+}
+
+input {
+    width: 40px;
+    height: 30px;
+    border: 2px solid orange;
+    margin: 10px;
+
 }
